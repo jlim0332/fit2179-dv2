@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Australian game development studios by state, FY2024",
+    "subtitle": "Source: IGEA Australian Game Development Survey FY24",
+    "anchor": "start",
+    "font": "Inter",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280",
+    "color": "#1A1F36"
+  },
+  "width": 600,
+  "height": 500,
+  "background": "transparent",
+  "config": {
+    "view": { "stroke": null },
+    "font": "Inter"
+  },
+  "projection": { "type": "mercator" },
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/topojson/australia_states.json",
+    "format": {
+      "type": "topojson",
+      "feature": "australian_states"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": { "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/au_industry_state_breakdown.csv" },
+        "key": "state",
+        "fields": ["studio_pct", "fte_pct", "state_code"]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "color": {
+      "field": "studio_pct",
+      "type": "quantitative",
+      "scale": {
+        "type": "threshold",
+        "domain": [5, 15, 25],
+        "range": ["#FFF1E5", "#FFD4A8", "#F9A064", "#F26B1F"]
+      },
+      "legend": {
+        "title": "% of AU studios",
+        "orient": "right",
+        "titleFontSize": 11,
+        "labelFontSize": 10
+      }
+    },
+    "tooltip": [
+      { "field": "properties.STATE_NAME", "type": "nominal", "title": "State" },
+      { "field": "studio_pct", "type": "quantitative", "title": "Share of studios (%)" },
+      { "field": "fte_pct", "type": "quantitative", "title": "Share of workers (%)" }
+    ]
+  }
+}

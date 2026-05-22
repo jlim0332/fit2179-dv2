@@ -1,0 +1,110 @@
+/* ====== Reset & base ====== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1A1F36;
+  background: #FFFFFF;
+}
+
+/* ====== Layout containers ====== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ====== Title / hero ====== */
+.hero {
+  padding: 80px 0 60px;
+  text-align: center;
+  border-bottom: 1px solid #EEE;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.hero .subtitle {
+  font-size: 20px;
+  color: #6B7280;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.hero .meta {
+  margin-top: 32px;
+  font-size: 14px;
+  color: #6B7280;
+}
+
+/* ====== Act headers ====== */
+.act {
+  padding: 80px 0 40px;
+}
+.act-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F26B1F;
+  margin-bottom: 8px;
+}
+.act h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.act-intro {
+  font-size: 18px;
+  color: #6B7280;
+  max-width: 720px;
+}
+
+/* ====== Chart blocks ====== */
+.chart-block {
+  background: #FAF7F2;
+  border-radius: 12px;
+  padding: 32px;
+  margin: 32px 0;
+}
+.chart-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.chart-subtitle {
+  font-size: 15px;
+  color: #6B7280;
+  margin-bottom: 24px;
+}
+.chart-takeaway {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #E5E0D8;
+  font-size: 15px;
+  color: #1A1F36;
+}
+.chart-takeaway strong { color: #F26B1F; }
+
+/* ====== Vega-Lite container ====== */
+.vis { width: 100%; }
+.vis canvas, .vis svg { max-width: 100%; }
+
+/* ====== Footer ====== */
+footer {
+  padding: 60px 0 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #6B7280;
+  border-top: 1px solid #EEE;
+  margin-top: 80px;
+}
+
+/* ====== Small screens ====== */
+@media (max-width: 700px) {
+  .hero h1 { font-size: 32px; }
+  .act h2 { font-size: 28px; }
+  .chart-block { padding: 20px; }
+}

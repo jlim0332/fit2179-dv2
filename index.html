@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Australia's Game Development Industry — FIT2179 DV2</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Vega + Vega-Lite + Vega-Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Australia's Game Development Industry</h1>
+      <p class="subtitle">A $339 million industry, 2,465 workers, and 290 games on Steam — told in three zooms.</p>
+      <p class="meta">FIT2179 Data Visualisation 2 · Jamie Lim · 2026</p>
+    </div>
+  </section>
+
+  <!-- ACT 1: THE INDUSTRY -->
+  <section class="act">
+    <div class="container">
+      <p class="act-label">Act 1</p>
+      <h2>The Industry</h2>
+      <p class="act-intro">Australia's game development sector is small but established — concentrated in Victoria, growing in revenue, and dominated by tiny indie studios.</p>
+
+      <!-- CHART 1 -->
+      <div class="chart-block">
+        <h3 class="chart-title">Where Aussie studios are based</h3>
+        <p class="chart-subtitle">Share of Australia's game development studios by state, FY2024</p>
+        <div id="chart1" class="vis"></div>
+        <p class="chart-takeaway"><strong>Victoria dominates</strong> with 28% of all AU studios. Combined with Queensland and NSW, the three eastern states host 68% of the industry.</p>
+      </div>
+
+      <!-- CHART 2 placeholder -->
+      <div class="chart-block">
+        <h3 class="chart-title">Studios vs workers per state</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart2" class="vis"></div>
+      </div>
+
+      <!-- CHART 3 placeholder -->
+      <div class="chart-block">
+        <h3 class="chart-title">Industry growth 2016–2024</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart3" class="vis"></div>
+      </div>
+
+      <!-- CHART 4 placeholder -->
+      <div class="chart-block">
+        <h3 class="chart-title">Workforce composition</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart4" class="vis"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACT 2: THE GAMES -->
+  <section class="act">
+    <div class="container">
+      <p class="act-label">Act 2</p>
+      <h2>The Games</h2>
+      <p class="act-intro">290 games. 64 studios. 2.1 million reviews. What Australia actually ships to Steam.</p>
+
+      <div class="chart-block">
+        <h3 class="chart-title">AU studios on Steam, mapped</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart5" class="vis"></div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">AU Steam releases over time</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart6" class="vis"></div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">AU vs the world: genre preferences</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart7" class="vis"></div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">Cheap and well-loved: price vs review score</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart8" class="vis"></div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">Top 10 AU studios by impact</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart9" class="vis"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACT 3: THE SPOTLIGHT -->
+  <section class="act">
+    <div class="container">
+      <p class="act-label">Act 3 · Spotlight</p>
+      <h2>Team Cherry: Three People, Two Games, One Cult Classic</h2>
+      <p class="act-intro">A three-person studio from Adelaide made one of the most beloved indie games of the decade.</p>
+
+      <div class="chart-block">
+        <h3 class="chart-title">Team Cherry on the map</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart10" class="vis"></div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">Career cadence: Team Cherry vs other tiny indie giants</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart11" class="vis"></div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">Hollow Knight's global reach</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart12" class="vis"></div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">Honourable mentions</h3>
+        <p class="chart-subtitle">Coming soon</p>
+        <div id="chart13" class="vis"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Data sources: IGEA AGDS FY24, gamecompanies.com, fgfactory.com.au, Kaggle FronkonGames Steam dataset</p>
+      <p>Built with Vega-Lite · Jamie [LastName] · 2026</p>
+    </div>
+  </footer>
+
+  <!-- Render charts -->
+  <script>
+    const vegaOpts = { actions: false, renderer: 'svg' };
+
+    vegaEmbed('#chart1', 'charts/chart1_state_map.json', vegaOpts);
+    // chart2, chart3 etc will go here as you build them
+  </script>
+
+</body>
+</html>
