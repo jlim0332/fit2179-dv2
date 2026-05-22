@@ -22,7 +22,7 @@
     "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/topojson/australia_states.json",
     "format": {
       "type": "topojson",
-      "feature": "australian_states"
+      "feature": "australia_states"
     }
   },
   "transform": [
