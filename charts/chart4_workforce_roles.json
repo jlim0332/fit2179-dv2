@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Programmers and artists make up 62% of the workforce",
+    "subtitle": "Share of full-time employees by role, FY2024",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "width": 500,
+  "height": 380,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/au_industry_roles.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#F26B1F", "strokeWidth": 2},
+      "encoding": {
+        "y": {"field": "role", "type": "nominal", "sort": "-x", "title": null},
+        "x": {"field": "pct", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {"type": "circle", "size": 280, "color": "#F26B1F", "opacity": 1, "stroke": "#FFFFFF", "strokeWidth": 2},
+      "encoding": {
+        "y": {"field": "role", "type": "nominal", "sort": "-x"},
+        "x": {"field": "pct", "type": "quantitative", "title": "Share of workforce (%)"},
+        "tooltip": [
+          {"field": "role", "type": "nominal", "title": "Role"},
+          {"field": "pct", "type": "quantitative", "title": "Share (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 12, "fontSize": 11, "fontWeight": 600, "color": "#1A1F36"},
+      "encoding": {
+        "y": {"field": "role", "type": "nominal", "sort": "-x"},
+        "x": {"field": "pct", "type": "quantitative"},
+        "text": {"field": "pct", "type": "quantitative"}
+      }
+    }
+  ]
+}

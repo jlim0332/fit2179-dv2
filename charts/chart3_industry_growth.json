@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Australia's game industry tripled in 8 years",
+    "subtitle": "Revenue (bars) and full-time employees (line), FY2016–FY2024. FY2018 not surveyed.",
+    "anchor": "start",
+    "font": "Inter",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280",
+    "color": "#1A1F36"
+  },
+  "width": 600,
+  "height": 380,
+  "background": "transparent",
+  "config": {
+    "view": { "stroke": null },
+    "font": "Inter",
+    "axis": {
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleColor": "#1A1F36",
+      "labelColor": "#6B7280",
+      "domainColor": "#E5E5E5",
+      "tickColor": "#E5E5E5",
+      "gridColor": "#F5F5F5"
+    }
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/au_industry_timeline.csv"
+  },
+  "transform": [
+    {
+      "calculate": "parseInt(substring(datum.fiscal_year, 2))",
+      "as": "year"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#F26B1F",
+        "opacity": 0.85,
+        "cornerRadiusTopLeft": 4,
+        "cornerRadiusTopRight": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": "Fiscal year",
+          "axis": { "labelAngle": 0 }
+        },
+        "y": {
+          "field": "revenue_million_aud",
+          "type": "quantitative",
+          "title": "Revenue (A$ million)",
+          "axis": { "titleColor": "#F26B1F" }
+        },
+        "tooltip": [
+          { "field": "fiscal_year", "type": "nominal", "title": "Fiscal Year" },
+          { "field": "revenue_million_aud", "type": "quantitative", "title": "Revenue ($M AUD)", "format": ".1f" },
+          { "field": "employees", "type": "quantitative", "title": "Employees" },
+          { "field": "companies_surveyed", "type": "quantitative", "title": "Companies surveyed" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#00695C",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 90,
+          "color": "#00695C",
+          "stroke": "#FFFFFF",
+          "strokeWidth": 2
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "employees",
+          "type": "quantitative",
+          "title": "Employees (FTE)",
+          "axis": { "titleColor": "#00695C", "orient": "right" }
+        },
+        "tooltip": [
+          { "field": "fiscal_year", "type": "nominal", "title": "Fiscal Year" },
+          { "field": "employees", "type": "quantitative", "title": "Employees" }
+        ]
+      }
+    }
+  ],
+  "resolve": {
+    "scale": { "y": "independent" }
+  }
+}
