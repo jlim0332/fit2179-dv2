@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What kinds of games do AU studios make?",
+    "subtitle": "Top 20 AU studios on Steam (by total reviews) and the genres they ship. Cell colour = number of games in that genre.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "width": 600,
+  "height": 520,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_studio_genre.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2,
+        "cornerRadius": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "studio_name",
+          "type": "nominal",
+          "title": null,
+          "sort": ["Sledgehammer Games", "Team Cherry", "Tantalus Media", "Massive Monster", "Beam Team Games", "SMG Studio", "Witch Beam", "Greenheart Games", "Team Bondi", "Gameloft", "ustwo", "House House", "League of Geeks", "Defiant Development", "Electronic Arts", "Big Ant Studios", "Grease Monkey Games", "MicroProse", "Playside Studios", "Con Artist Games"],
+          "axis": {
+            "labelFontSize": 10,
+            "labelLimit": 200,
+            "labelPadding": 6
+          }
+        },
+        "x": {
+          "field": "genre",
+          "type": "nominal",
+          "title": null,
+          "sort": ["Action", "Adventure", "Indie", "RPG", "Strategy", "Simulation", "Sports", "Racing", "Casual", "Free To Play", "Massively Multiplayer", "Early Access"],
+          "axis": {
+            "labelAngle": -40,
+            "labelFontSize": 10,
+            "orient": "top",
+            "labelPadding": 6
+          }
+        },
+        "color": {
+          "field": "n_games",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "oranges",
+            "domainMin": 0
+          },
+          "legend": {
+            "title": "# games",
+            "orient": "right",
+            "titleFontSize": 10,
+            "labelFontSize": 9
+          }
+        },
+        "tooltip": [
+          {"field": "studio_name", "type": "nominal", "title": "Studio"},
+          {"field": "genre", "type": "nominal", "title": "Genre"},
+          {"field": "n_games", "type": "quantitative", "title": "# games"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "y": {
+          "field": "studio_name",
+          "type": "nominal",
+          "sort": ["Sledgehammer Games", "Team Cherry", "Tantalus Media", "Massive Monster", "Beam Team Games", "SMG Studio", "Witch Beam", "Greenheart Games", "Team Bondi", "Gameloft", "ustwo", "House House", "League of Geeks", "Defiant Development", "Electronic Arts", "Big Ant Studios", "Grease Monkey Games", "MicroProse", "Playside Studios", "Con Artist Games"]
+        },
+        "x": {
+          "field": "genre",
+          "type": "nominal",
+          "sort": ["Action", "Adventure", "Indie", "RPG", "Strategy", "Simulation", "Sports", "Racing", "Casual", "Free To Play", "Massively Multiplayer", "Early Access"]
+        },
+        "text": {"field": "n_games", "type": "quantitative"},
+        "color": {
+          "condition": {
+            "test": "datum.n_games > 5",
+            "value": "#FFFFFF"
+          },
+          "value": "#1A1F36"
+        }
+      }
+    }
+  ]
+}
