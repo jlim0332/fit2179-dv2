@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "AU games on Steam: an indie boom that never stopped",
+    "subtitle": "Number of AU-developed games released on Steam per year. Hover for review counts.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "width": 650,
+  "height": 360,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_yearly.csv"
+  },
+  "transform": [
+    {"filter": "datum.release_year >= 2007 && datum.release_year <= 2025"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#F26B1F",
+        "opacity": 0.25,
+        "interpolate": "monotone",
+        "line": {
+          "color": "#F26B1F",
+          "strokeWidth": 3
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "release_year",
+          "type": "quantitative",
+          "title": "Release year",
+          "axis": {"format": "d", "tickMinStep": 1}
+        },
+        "y": {
+          "field": "games_released",
+          "type": "quantitative",
+          "title": "Games released"
+        },
+        "tooltip": [
+          {"field": "release_year", "type": "quantitative", "title": "Year", "format": "d"},
+          {"field": "games_released", "type": "quantitative", "title": "Games released"},
+          {"field": "total_reviews", "type": "quantitative", "title": "Total reviews", "format": ","},
+          {"field": "avg_review_pct", "type": "quantitative", "title": "Avg review %", "format": ".0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "color": "#F26B1F",
+        "size": 80,
+        "opacity": 1,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "release_year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "games_released",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {"field": "release_year", "type": "quantitative", "title": "Year", "format": "d"},
+          {"field": "games_released", "type": "quantitative", "title": "Games released"}
+        ]
+      }
+    }
+  ]
+}
