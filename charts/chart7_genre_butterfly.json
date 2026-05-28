@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What Australia makes vs what the world makes",
+    "subtitle": "Share of games tagged with each genre: Australian studios (left) vs all of Steam (right). Top 12 genres.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_genres_au_vs_global.csv"
+  },
+  "transform": [
+    {"filter": "datum.au_pct >= 1"}
+  ],
+  "spacing": 0,
+  "hconcat": [
+    {
+      "title": {"text": "Australia", "anchor": "end", "fontSize": 12, "color": "#F26B1F"},
+      "width": 280,
+      "height": 360,
+      "mark": {"type": "bar", "color": "#F26B1F", "cornerRadiusTopLeft": 3, "cornerRadiusBottomLeft": 3},
+      "encoding": {
+        "y": {
+          "field": "genre",
+          "type": "nominal",
+          "sort": {"field": "au_pct", "order": "descending"},
+          "axis": null
+        },
+        "x": {
+          "field": "au_pct",
+          "type": "quantitative",
+          "title": "AU share (%)",
+          "scale": {"domain": [0, 75], "reverse": true}
+        },
+        "tooltip": [
+          {"field": "genre", "type": "nominal", "title": "Genre"},
+          {"field": "au_pct", "type": "quantitative", "title": "AU share (%)", "format": ".1f"},
+          {"field": "global_pct", "type": "quantitative", "title": "Global share (%)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "width": 90,
+      "height": 360,
+      "view": {"stroke": null},
+      "mark": {"type": "text", "fontSize": 11, "fontWeight": 600, "color": "#1A1F36"},
+      "encoding": {
+        "y": {
+          "field": "genre",
+          "type": "nominal",
+          "sort": {"field": "au_pct", "order": "descending"},
+          "axis": null
+        },
+        "text": {"field": "genre", "type": "nominal"}
+      }
+    },
+    {
+      "title": {"text": "All of Steam", "anchor": "start", "fontSize": 12, "color": "#6B7280"},
+      "width": 280,
+      "height": 360,
+      "mark": {"type": "bar", "color": "#C8C8C8", "cornerRadiusTopRight": 3, "cornerRadiusBottomRight": 3},
+      "encoding": {
+        "y": {
+          "field": "genre",
+          "type": "nominal",
+          "sort": {"field": "au_pct", "order": "descending"},
+          "axis": null
+        },
+        "x": {
+          "field": "global_pct",
+          "type": "quantitative",
+          "title": "Global share (%)",
+          "scale": {"domain": [0, 75]}
+        },
+        "tooltip": [
+          {"field": "genre", "type": "nominal", "title": "Genre"},
+          {"field": "au_pct", "type": "quantitative", "title": "AU share (%)", "format": ".1f"},
+          {"field": "global_pct", "type": "quantitative", "title": "Global share (%)", "format": ".1f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}

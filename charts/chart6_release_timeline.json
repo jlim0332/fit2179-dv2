@@ -2,75 +2,58 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "AU games on Steam: an indie boom that never stopped",
-    "subtitle": "Number of AU-developed games released on Steam per year. Hover for review counts.",
+    "subtitle": "AU-developed Steam releases per year, stacked by genre. Games tagged with multiple genres are counted once per genre.",
     "anchor": "start",
     "fontSize": 14,
     "subtitleFontSize": 11,
     "subtitleColor": "#6B7280"
   },
-  "width": 650,
-  "height": 360,
+  "width": 680,
+  "height": 400,
   "data": {
-    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_yearly.csv"
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_yearly_genre.csv"
   },
-  "transform": [
-    {"filter": "datum.release_year >= 2007 && datum.release_year <= 2025"}
-  ],
-  "layer": [
-    {
-      "mark": {
-        "type": "area",
-        "color": "#F26B1F",
-        "opacity": 0.25,
-        "interpolate": "monotone",
-        "line": {
-          "color": "#F26B1F",
-          "strokeWidth": 3
-        }
+  "mark": {
+    "type": "area",
+    "opacity": 0.95,
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "release_year",
+      "type": "ordinal",
+      "title": "Release year",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "n_games",
+      "type": "quantitative",
+      "title": "Games released (stacked by genre)",
+      "stack": "zero"
+    },
+    "color": {
+      "field": "genre",
+      "type": "nominal",
+      "sort": ["Indie", "Action", "Adventure", "Simulation", "Strategy", "Casual", "Sports", "RPG", "Free To Play", "Racing", "Early Access", "Massively Multiplayer"],
+      "scale": {
+        "domain": ["Indie", "Action", "Adventure", "Simulation", "Strategy", "Casual", "Sports", "RPG", "Free To Play", "Racing", "Early Access", "Massively Multiplayer"],
+        "range": ["#F26B1F", "#1A1F36", "#7A2E00", "#00695C", "#6B4226", "#F9A064", "#DC2626", "#7C3AED", "#0EA5E9", "#FFD4A8", "#A8A29E", "#52525B"]
       },
-      "encoding": {
-        "x": {
-          "field": "release_year",
-          "type": "quantitative",
-          "title": "Release year",
-          "axis": {"format": "d", "tickMinStep": 1}
-        },
-        "y": {
-          "field": "games_released",
-          "type": "quantitative",
-          "title": "Games released"
-        },
-        "tooltip": [
-          {"field": "release_year", "type": "quantitative", "title": "Year", "format": "d"},
-          {"field": "games_released", "type": "quantitative", "title": "Games released"},
-          {"field": "total_reviews", "type": "quantitative", "title": "Total reviews", "format": ","},
-          {"field": "avg_review_pct", "type": "quantitative", "title": "Avg review %", "format": ".0f"}
-        ]
+      "legend": {
+        "title": "Genre",
+        "orient": "right",
+        "titleFontSize": 11,
+        "labelFontSize": 10
       }
     },
-    {
-      "mark": {
-        "type": "circle",
-        "color": "#F26B1F",
-        "size": 80,
-        "opacity": 1,
-        "stroke": "#FFFFFF",
-        "strokeWidth": 2
-      },
-      "encoding": {
-        "x": {
-          "field": "release_year",
-          "type": "quantitative"
-        },
-        "y": {
-          "field": "games_released",
-          "type": "quantitative"
-        },
-        "tooltip": [
-          {"field": "release_year", "type": "quantitative", "title": "Year", "format": "d"},
-          {"field": "games_released", "type": "quantitative", "title": "Games released"}
-        ]
-      }
-    }
-  ]
+    "order": {
+      "field": "genre",
+      "type": "nominal"
+    },
+    "tooltip": [
+      {"field": "release_year", "type": "ordinal", "title": "Year"},
+      {"field": "genre", "type": "nominal", "title": "Genre"},
+      {"field": "n_games", "type": "quantitative", "title": "Games"}
+    ]
+  }
 }
