@@ -1,16 +1,16 @@
-studio_name,n_games,total_reviews,avg_review_pct_positive,state
-Sledgehammer Games,16,945136,61.2,VIC
-Team Cherry,2,415946,97.0,SA
-Tantalus Media,4,241452,88.4,VIC
-Massive Monster,3,105251,91.4,VIC
-Beam Team Games,1,45828,74.4,QLD
-SMG Studio,9,42781,79.3,NSW
-Witch Beam,3,37303,95.0,QLD
-Greenheart Games,2,35783,95.4,QLD
-Team Bondi,1,34026,85.9,NSW
-Gameloft,10,27126,71.3,QLD
-ustwo,6,24752,92.5,
-House House,2,22144,85.4,VIC
-League of Geeks,3,18197,76.5,VIC
-Defiant Development,2,16239,86.8,QLD
-Electronic Arts,4,14850,65.5,VIC
+studio_name,n_games,total_reviews,avg_review_pct_positive,state,first_release_year,last_release_year
+Sledgehammer Games,16,945136,61.2,VIC,2011,2025
+Team Cherry,2,415946,97.0,SA,2017,2025
+Tantalus Media,4,241452,88.4,VIC,2019,2024
+Massive Monster,3,105251,91.4,VIC,2018,2022
+Beam Team Games,1,45828,74.4,QLD,2022,2022
+SMG Studio,9,42781,79.3,NSW,2014,2025
+Witch Beam,3,37303,95.0,QLD,2015,2025
+Greenheart Games,2,35783,95.4,QLD,2013,2025
+Team Bondi,1,34026,85.9,NSW,2011,2011
+Gameloft,10,27126,71.3,QLD,2017,2025
+ustwo,6,24752,92.5,,2020,2025
+House House,2,22144,85.4,VIC,2016,2020
+League of Geeks,3,18197,76.5,VIC,2015,2024
+Defiant Development,2,16239,86.8,QLD,2015,2017
+Electronic Arts,4,14850,65.5,VIC,2010,2024
