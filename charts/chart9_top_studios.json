@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The studios that put Australia on the map",
+    "subtitle": "Top 15 AU studios by total Steam reviews (log scale). Circle colour = average review score. Team Cherry ranks #2 on just two games.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "width": 580,
+  "height": 440,
+  "background": "#FFFFFF",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_studios_summary.csv"
+  },
+  "transform": [
+    {
+      "window": [{"op": "row_number", "as": "rank"}],
+      "sort": [{"field": "total_reviews", "order": "descending"}]
+    },
+    {"filter": "datum.rank <= 15"}
+  ],
+  "encoding": {
+    "y": {
+      "field": "studio_name",
+      "type": "nominal",
+      "sort": {"field": "total_reviews", "order": "descending"},
+      "title": null,
+      "axis": {"labelFontSize": 11, "labelPadding": 6}
+    },
+    "x": {
+      "field": "total_reviews",
+      "type": "quantitative",
+      "title": "Total Steam reviews (log scale)",
+      "scale": {"type": "log"},
+      "axis": {"format": "~s"}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#E5E5E5", "strokeWidth": 1},
+      "encoding": {
+        "x": {"field": "total_reviews", "type": "quantitative"},
+        "x2": {"datum": 1000}
+      }
+    },
+    {
+      "mark": {"type": "circle", "size": 320, "opacity": 1, "stroke": "#FFFFFF", "strokeWidth": 1.5},
+      "encoding": {
+        "color": {
+          "field": "avg_review_pct_positive",
+          "type": "quantitative",
+          "scale": {"scheme": "oranges", "domain": [55, 100]},
+          "title": "Avg review %",
+          "legend": {"orient": "bottom-right"}
+        },
+        "tooltip": [
+          {"field": "studio_name", "type": "nominal", "title": "Studio"},
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "n_games", "type": "quantitative", "title": "# Games"},
+          {"field": "total_reviews", "type": "quantitative", "title": "Total reviews", "format": ","},
+          {"field": "avg_review_pct_positive", "type": "quantitative", "title": "Avg review %", "format": ".0f"}
+        ]
+      }
+    }
+  ]
+}

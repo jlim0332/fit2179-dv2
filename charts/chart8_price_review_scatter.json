@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Cheap and well-loved: the Australian Steam sweet spot",
+    "subtitle": "Each circle is an AU game. Most sit under $20 with strongly positive reviews. Size = number of reviews.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "width": 640,
+  "height": 440,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_games.csv"
+  },
+  "transform": [
+    {"filter": "datum.total_reviews >= 50 && datum.review_pct_positive != null && datum.Price != null"},
+    {"calculate": "datum.total_reviews > 30000 ? datum.Name : ''", "as": "label"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.65,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "Price",
+          "type": "quantitative",
+          "title": "Price (USD)",
+          "scale": {"domain": [0, 40]},
+          "axis": {"format": "$d"}
+        },
+        "y": {
+          "field": "review_pct_positive",
+          "type": "quantitative",
+          "title": "Positive reviews (%)",
+          "scale": {"domain": [0, 100]}
+        },
+        "size": {
+          "field": "total_reviews",
+          "type": "quantitative",
+          "scale": {"type": "sqrt", "range": [30, 2000]},
+          "title": "Total reviews",
+          "legend": {"orient": "bottom-right"}
+        },
+        "color": {
+          "field": "review_pct_positive",
+          "type": "quantitative",
+          "scale": {"scheme": "oranges", "domain": [40, 100]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "Name", "type": "nominal", "title": "Game"},
+          {"field": "studio_name", "type": "nominal", "title": "Studio"},
+          {"field": "Price", "type": "quantitative", "title": "Price (USD)", "format": "$.2f"},
+          {"field": "review_pct_positive", "type": "quantitative", "title": "Positive %", "format": ".1f"},
+          {"field": "total_reviews", "type": "quantitative", "title": "Total reviews", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 12,
+        "fontSize": 10,
+        "fontWeight": 600,
+        "color": "#1A1F36"
+      },
+      "encoding": {
+        "x": {"field": "Price", "type": "quantitative"},
+        "y": {"field": "review_pct_positive", "type": "quantitative"},
+        "text": {"field": "label", "type": "nominal"}
+      }
+    }
+  ]
+}

@@ -1,88 +1,61 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "What Australia makes vs what the world makes",
-    "subtitle": "Share of games tagged with each genre: Australian studios (left) vs all of Steam (right). Top 12 genres.",
+    "text": "Cheap and well-loved: the Australian Steam sweet spot",
+    "subtitle": "Each circle is an AU game. Most sit under $20 with strongly positive reviews. Size = number of reviews.",
     "anchor": "start",
     "fontSize": 14,
     "subtitleFontSize": 11,
     "subtitleColor": "#6B7280"
   },
+  "width": 640,
+  "height": 440,
+  "background": "#FFFFFF",
   "data": {
-    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_genres_au_vs_global.csv"
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_games.csv"
   },
   "transform": [
-    {"filter": "datum.au_pct >= 1"}
+    {"filter": "datum.total_reviews >= 50 && datum.review_pct_positive != null && datum.Price != null"}
   ],
-  "spacing": 0,
-  "hconcat": [
-    {
-      "title": {"text": "Australia", "anchor": "end", "fontSize": 12, "color": "#F26B1F"},
-      "width": 280,
-      "height": 360,
-      "mark": {"type": "bar", "color": "#F26B1F", "cornerRadiusTopLeft": 3, "cornerRadiusBottomLeft": 3},
-      "encoding": {
-        "y": {
-          "field": "genre",
-          "type": "nominal",
-          "sort": {"field": "au_pct", "order": "descending"},
-          "axis": null
-        },
-        "x": {
-          "field": "au_pct",
-          "type": "quantitative",
-          "title": "AU share (%)",
-          "scale": {"domain": [0, 75], "reverse": true}
-        },
-        "tooltip": [
-          {"field": "genre", "type": "nominal", "title": "Genre"},
-          {"field": "au_pct", "type": "quantitative", "title": "AU share (%)", "format": ".1f"},
-          {"field": "global_pct", "type": "quantitative", "title": "Global share (%)", "format": ".1f"}
-        ]
-      }
+  "mark": {
+    "type": "circle",
+    "opacity": 0.65,
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "Price",
+      "type": "quantitative",
+      "title": "Price (USD)",
+      "scale": {"domain": [-3, 70]},
+      "axis": {"format": "$d"}
     },
-    {
-      "width": 90,
-      "height": 360,
-      "view": {"stroke": null},
-      "mark": {"type": "text", "fontSize": 11, "fontWeight": 600, "color": "#1A1F36"},
-      "encoding": {
-        "y": {
-          "field": "genre",
-          "type": "nominal",
-          "sort": {"field": "au_pct", "order": "descending"},
-          "axis": null
-        },
-        "text": {"field": "genre", "type": "nominal"}
-      }
+    "y": {
+      "field": "review_pct_positive",
+      "type": "quantitative",
+      "title": "Positive reviews (%)",
+      "scale": {"domain": [0, 103]}
     },
-    {
-      "title": {"text": "All of Steam", "anchor": "start", "fontSize": 12, "color": "#6B7280"},
-      "width": 280,
-      "height": 360,
-      "mark": {"type": "bar", "color": "#C8C8C8", "cornerRadiusTopRight": 3, "cornerRadiusBottomRight": 3},
-      "encoding": {
-        "y": {
-          "field": "genre",
-          "type": "nominal",
-          "sort": {"field": "au_pct", "order": "descending"},
-          "axis": null
-        },
-        "x": {
-          "field": "global_pct",
-          "type": "quantitative",
-          "title": "Global share (%)",
-          "scale": {"domain": [0, 75]}
-        },
-        "tooltip": [
-          {"field": "genre", "type": "nominal", "title": "Genre"},
-          {"field": "au_pct", "type": "quantitative", "title": "AU share (%)", "format": ".1f"},
-          {"field": "global_pct", "type": "quantitative", "title": "Global share (%)", "format": ".1f"}
-        ]
-      }
-    }
-  ],
-  "config": {
-    "view": {"stroke": null}
+    "size": {
+      "field": "total_reviews",
+      "type": "quantitative",
+      "scale": {"type": "sqrt", "range": [30, 2000]},
+      "title": "Total reviews",
+      "legend": {"orient": "bottom-right"}
+    },
+    "color": {
+      "field": "review_pct_positive",
+      "type": "quantitative",
+      "scale": {"scheme": "oranges", "domain": [40, 100]},
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "Name", "type": "nominal", "title": "Game"},
+      {"field": "studio_name", "type": "nominal", "title": "Studio"},
+      {"field": "Price", "type": "quantitative", "title": "Price (USD)", "format": "$.2f"},
+      {"field": "review_pct_positive", "type": "quantitative", "title": "Positive %", "format": ".1f"},
+      {"field": "total_reviews", "type": "quantitative", "title": "Total reviews", "format": ","}
+    ]
   }
 }
