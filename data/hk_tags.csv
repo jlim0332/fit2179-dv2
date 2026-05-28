@@ -1,0 +1,21 @@
+tag,rank,weight
+Metroidvania,1,100.0
+Souls-like,2,95.0
+Platformer,3,90.0
+Great Soundtrack,4,85.0
+2D,5,80.0
+Difficult,6,75.0
+Indie,7,70.0
+Singleplayer,8,65.0
+Atmospheric,9,60.0
+Exploration,10,55.0
+Adventure,11,50.0
+Story Rich,12,45.0
+Hand-drawn,13,40.0
+Multiple Endings,14,35.0
+Action,15,30.0
+Dark Fantasy,16,25.0
+Open World,17,20.0
+Cute,18,15.0
+Controller,19,10.0
+Side Scroller,20,5.0
