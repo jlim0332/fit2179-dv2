@@ -1,0 +1,93 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Meet Team Cherry — three people in Adelaide",
+    "subtitle": "A tiny South Australian studio behind one of the best-reviewed games on Steam.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "width": 700,
+  "height": 500,
+  "background": "#FFFFFF",
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/topojson/australia_states.json",
+        "format": {"type": "topojson", "feature": "australia_states"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F0EEEC",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"city": "Adelaide", "lat": -34.9285, "lng": 138.6007, "studio": "Team Cherry"}
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 600,
+        "color": "#F26B1F",
+        "opacity": 0.25
+      },
+      "encoding": {
+        "longitude": {"field": "lng", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"city": "Adelaide", "lat": -34.9285, "lng": 138.6007, "studio": "Team Cherry"}
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 180,
+        "color": "#F26B1F",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2,
+        "opacity": 1
+      },
+      "encoding": {
+        "longitude": {"field": "lng", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "tooltip": [
+          {"field": "studio", "type": "nominal", "title": "Studio"},
+          {"field": "city", "type": "nominal", "title": "City"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"lat": -34.9285, "lng": 138.6007, "text": "Team Cherry — Adelaide, SA"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -18,
+        "dy": -10,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#1A1F36"
+      },
+      "encoding": {
+        "longitude": {"field": "lng", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "text", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}

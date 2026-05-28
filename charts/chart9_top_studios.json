@@ -12,22 +12,15 @@
   "height": 440,
   "background": "#FFFFFF",
   "data": {
-    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_au_studios_summary.csv"
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/steam_top15_studios.csv"
   },
-  "transform": [
-    {
-      "window": [{"op": "row_number", "as": "rank"}],
-      "sort": [{"field": "total_reviews", "order": "descending"}]
-    },
-    {"filter": "datum.rank <= 15"}
-  ],
   "encoding": {
     "y": {
-      "field": "studio_name",
-      "type": "nominal",
-      "sort": {"field": "total_reviews", "order": "descending"},
-      "title": null,
-      "axis": {"labelFontSize": 11, "labelPadding": 6}
+    "field": "studio_name",
+    "type": "nominal",
+    "sort": ["Sledgehammer Games", "Team Cherry", "Tantalus Media", "Massive Monster", "Beam Team Games", "SMG Studio", "Witch Beam", "Greenheart Games", "Team Bondi", "Gameloft", "ustwo", "House House", "League of Geeks", "Defiant Development", "Electronic Arts"],
+    "title": null,
+    "axis": {"labelFontSize": 11, "labelPadding": 6}
     },
     "x": {
       "field": "total_reviews",
