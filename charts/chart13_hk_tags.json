@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What defines a Team Cherry game?",
+    "subtitle": "Hollow Knight's eight most prominent Steam tags. Petal length = how high Steam ranks each tag.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "subtitleColor": "#6B7280"
+  },
+  "width": 500,
+  "height": 500,
+  "background": "#FFFFFF",
+  "padding": 20,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/data/hk_tags.csv"
+  },
+  "transform": [
+    {"filter": "datum.rank <= 8"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 60,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2,
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "theta": {
+          "field": "tag",
+          "type": "nominal",
+          "sort": {"field": "weight", "order": "descending"},
+          "scale": {"padding": 0.3}
+        },
+        "radius": {
+          "field": "weight",
+          "type": "quantitative",
+          "scale": {"type": "linear", "range": [60, 230]}
+        },
+        "color": {
+          "field": "weight",
+          "type": "quantitative",
+          "scale": {"scheme": "oranges", "domain": [0, 100]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "tag", "type": "nominal", "title": "Tag"},
+          {"field": "rank", "type": "quantitative", "title": "Steam rank"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "radiusOffset": 18, "fontSize": 11, "fontWeight": 600, "color": "#1A1F36"},
+      "encoding": {
+        "theta": {
+          "field": "tag",
+          "type": "nominal",
+          "sort": {"field": "weight", "order": "descending"},
+          "scale": {"padding": 0.3}
+        },
+        "radius": {
+          "field": "weight",
+          "type": "quantitative",
+          "scale": {"type": "linear", "range": [60, 230]}
+        },
+        "text": {"field": "tag", "type": "nominal"}
+      }
+    }
+  ],
+  "view": {"stroke": null}
+}

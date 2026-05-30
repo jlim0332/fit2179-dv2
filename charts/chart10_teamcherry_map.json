@@ -18,76 +18,42 @@
         "url": "https://raw.githubusercontent.com/jlim0332/fit2179-dv2/main/topojson/australia_states.json",
         "format": {"type": "topojson", "feature": "australia_states"}
       },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#F0EEEC",
-        "stroke": "#FFFFFF",
-        "strokeWidth": 1
-      }
+      "mark": {"type": "geoshape", "fill": "#F0EEEC", "stroke": "#FFFFFF", "strokeWidth": 1}
     },
     {
-      "data": {
-        "values": [
-          {"city": "Adelaide", "lat": -34.9285, "lng": 138.6007, "studio": "Team Cherry"}
-        ]
-      },
-      "mark": {
-        "type": "circle",
-        "size": 600,
-        "color": "#F26B1F",
-        "opacity": 0.25
-      },
+      "data": {"values": [{"lat": -34.9285, "lng": 138.6007}]},
+      "mark": {"type": "circle", "size": 1200, "color": "#F26B1F", "opacity": 0.2},
       "encoding": {
         "longitude": {"field": "lng", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"}
       }
     },
     {
-      "data": {
-        "values": [
-          {"city": "Adelaide", "lat": -34.9285, "lng": 138.6007, "studio": "Team Cherry"}
-        ]
-      },
-      "mark": {
-        "type": "circle",
-        "size": 180,
-        "color": "#F26B1F",
-        "stroke": "#FFFFFF",
-        "strokeWidth": 2,
-        "opacity": 1
-      },
+      "data": {"values": [{"lat": -34.9285, "lng": 138.6007}]},
+      "mark": {"type": "circle", "size": 400, "color": "#F26B1F", "opacity": 0.35},
       "encoding": {
         "longitude": {"field": "lng", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "tooltip": [
-          {"field": "studio", "type": "nominal", "title": "Studio"},
-          {"field": "city", "type": "nominal", "title": "City"}
-        ]
+        "latitude": {"field": "lat", "type": "quantitative"}
       }
     },
     {
-      "data": {
-        "values": [
-          {"lat": -34.9285, "lng": 138.6007, "text": "Team Cherry — Adelaide, SA"}
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -18,
-        "dy": -10,
-        "fontSize": 13,
-        "fontWeight": 700,
-        "color": "#1A1F36"
-      },
+      "data": {"values": [{"lat": -34.9285, "lng": 138.6007, "studio": "Team Cherry"}]},
+      "mark": {"type": "circle", "size": 160, "color": "#F26B1F", "stroke": "#FFFFFF", "strokeWidth": 2, "opacity": 1},
       "encoding": {
         "longitude": {"field": "lng", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"},
-        "text": {"field": "text", "type": "nominal"}
+        "tooltip": [{"field": "studio", "type": "nominal", "title": "Studio"}]
+      }
+    },
+    {
+      "data": {"values": [{"lat": -34.9285, "lng": 138.6007, "label": "Team Cherry — Adelaide, SA"}]},
+      "mark": {"type": "text", "align": "right", "dx": -22, "dy": -8, "fontSize": 13, "fontWeight": 700, "color": "#1A1F36"},
+      "encoding": {
+        "longitude": {"field": "lng", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "label", "type": "nominal"}
       }
     }
   ],
-  "config": {
-    "view": {"stroke": null}
-  }
+  "config": {"view": {"stroke": null}}
 }
